@@ -1,14 +1,48 @@
+/*BASIC STYLE*/
 #board {
     padding: 2rem;
     width: 80vw;
-    margin-left: 20vw;
     background-color: var(--background-primary);
+    color: var(--board-fontcolor);
 }
 
-._selected{
+#title{
+    font-size : var(--board-titlesize);
+    margin: 2rem 1rem;
+}
+#title-container hr{
+    margin: 7vh 3rem;
+}
+
+/*HOME TAB*/
+#tab-home{
     display: flex;
 }
 
-._not_selected{
-    display: none;
+#tab-home > div{
+    width: 70%;
+    height: 100%;
+    vertical-align: middle;
+    align-items: center;
+    font-size: 1.5rem;
+    padding: 0px 2rem;
+    margin: auto;
+}
+#home-top-title{
+    display: flex;
+    flex-flow: row nowrap;
+}
+#home-top-title svg{
+    font-size: 3rem;
+    color: var(--palette-secondary);
+}
+#home-top-title h2{
+    font-size: 1.75rem;
+}
+#tab-home > div strong{
+    color: var(--palette-secondary);
+}
+#tab-home img{
+    max-height: 250px;
+    margin: auto;
 }

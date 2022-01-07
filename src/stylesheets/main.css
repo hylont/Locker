@@ -1,4 +1,5 @@
 :root{
+    font-size: 15px;
 
     /*--<container_name>-<function>-<importance>-<variant>*/
   
@@ -31,10 +32,11 @@
     --locker-credentialssize : 1rem;
   
     color: var(--palette-fontcolor);
-    font-size: 15px;
   
     /*board*/
     --board-titlecolor : var(--palette-fontcolor);
+    --board-fontcolor : #000000;
+    --board-titlesize: 2rem;
 }
 
 #root {
@@ -53,12 +55,4 @@ body {
     height: 100vh;
     margin: 0;
     padding: 0;
-}
-
-._active{
-    display: block;
-}
-
-._inactive{
-    display: none;
 }
