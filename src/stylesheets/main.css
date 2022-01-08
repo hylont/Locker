@@ -1,4 +1,5 @@
 :root{
+    font-size: 15px;
 
     /*--<container_name>-<function>-<importance>-<variant>*/
   
@@ -16,25 +17,22 @@
     --aside-background-primary-light : #1B2C4B;
     --aside-background-primary-dark : #0D1626;
     --aside-titlesize : 2rem;
-    --aside-undertitlesize : 0.6rem;
+    --aside-undertitlesize : 0.75rem;
     --aside-tabtitlesize : 1.4rem;
   
     /*locker*/
-    --locker-containersbordercolor : var(--palette-fontcolor);
-    --locker-servicelettercolor : var(--palette-fontcolor);
-    --locker-servicecolor : var(--palette-fontcolor);
-    --locker-labelcolor : var(--palette-fontcolor);
-    --locker-credentialscolor : var(--palette-fontcolor);
-    --locker-servicelettersize : 1.6rem;
-    --locker-servicesize : 1.2rem;
+    --locker-containersbordercolor : #000;
+    --locker-containerfontcolor : #000;
+    --locker-servicelettersize : 2rem;
+    --locker-servicesize : 1.1rem;
     --locker-labelsize : 0.8rem;
-    --locker-credentialssize : 1rem;
   
     color: var(--palette-fontcolor);
-    font-size: 15px;
   
     /*board*/
     --board-titlecolor : var(--palette-fontcolor);
+    --board-fontcolor : #000000;
+    --board-titlesize: 2.5rem;
 }
 
 #root {
@@ -46,19 +44,11 @@
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
     background-color: var(--background-primary);
     color: var(--font-color-primary);
     width: 100vw;
     height: 100vh;
     margin: 0;
     padding: 0;
-}
-
-._active{
-    display: block;
-}
-
-._inactive{
-    display: none;
 }

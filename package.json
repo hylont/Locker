@@ -47,6 +47,7 @@
           "@electron-forge/plugin-webpack",
           {
             "mainConfig": "./webpack.main.config.js",
+            "devContentSecurityPolicy": "style-src-elem 'unsafe-inline' https://fonts.googleapis.com",
             "renderer": {
               "config": "./webpack.renderer.config.js",
               "entryPoints": [
@@ -86,6 +87,7 @@
     "electron-squirrel-startup": "^1.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-toastify": "^8.1.0",
     "uuid": "^8.3.2"
   }
 }
