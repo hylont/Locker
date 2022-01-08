@@ -9,7 +9,11 @@ export default function Nav({onSelectBoard}) {
     const switchTab = (event) => {
         //console.log(event);
         const parentNavElement = event.nativeEvent.path.filter(node => node.className==='nav_btn')[0];
-        onSelectBoard(parentNavElement.id);
+        if(parentNavElement){
+            document.querySelectorAll('.nav_btn').forEach(navBtn => navBtn.classList.remove("_selected"));
+            parentNavElement.classList.add("_selected");
+            onSelectBoard(parentNavElement.id);
+        }
     }
 
     return (
@@ -21,9 +25,9 @@ export default function Nav({onSelectBoard}) {
                     <h3>Remember what's important</h3>
                 </span>
             </div>
-            <hr></hr>
+            <hr />
             <ul id="menu">
-                <li id="Home" className="nav_btn" onClick={(e) => switchTab(e)} ><FontAwesomeIcon icon={faHome}/><p>Home</p></li>
+                <li id="Home" className="nav_btn _selected" onClick={(e) => switchTab(e)} ><FontAwesomeIcon icon={faHome}/><p>Home</p></li>
                 <li id="Lockers" className="nav_btn" onClick={(e) => switchTab(e)} ><FontAwesomeIcon icon={faBox}/><p>Lockers</p></li>
             </ul>
             <div id="footer">

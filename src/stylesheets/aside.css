@@ -15,12 +15,13 @@
     flex-wrap: nowrap;
     flex-direction: row;
     justify-content: space-evenly;
+    align-items: center;
+    padding: 0.75rem;
 }
 
 #logo-container img{
-    max-width: 110px;
+    max-width: 90px;
     max-height: auto;
-    margin-right: -3vw;
     opacity: 0.9;
     z-index: 0;
     /*
@@ -33,9 +34,11 @@
     display: flex;
     flex-direction: column;
     z-index: 1;
+    margin-left: 0.5rem;
 }
 #logo-container h2{
     font-size: var(--aside-titlesize);
+    margin: auto auto auto 0;
 }
 
 #logo-container h3{
@@ -49,6 +52,8 @@
     margin: auto;
     padding: 0;
     width: 100%;
+    display: flex;
+    flex-flow: column wrap;
 }
 
 #nav hr{
@@ -56,18 +61,24 @@
     height: 8px;
     background-color: var(--aside-background-primary-light);
     border: 0;
+    margin-bottom: 5vh;
 }
 
 #menu li{
-    margin: 0.8rem 5%;
+    margin: 1.5rem auto;
     width: 90%;
-    height: 40px;
+    height: 50px;
     display: inline-flex;
     justify-content: center;
-    background: rgba(53, 87, 151, 0.1);
+    background: rgba(53, 87, 151, 0.3);
     border-radius: 20px;
     align-items: center;
     font-size: var(--aside-tabtitlesize);
+    cursor: pointer;
+}
+
+#menu li:hover{
+    background-color: rgba(53, 87, 151, 0.6);
 }
 
 #menu li *{
@@ -75,17 +86,23 @@
 }
 
 #menu li._selected{
-    background: rgba(53, 87, 151, 0.5);
     color: var(--palette-secondary);
+    border: 2px solid var(--palette-tertiary);
+    cursor: default;
 }
 
 #footer{
-    background-color: var(--aside-background-primary-);
+    opacity: 2;
     padding: 0.5rem;
     display: inline-flex;
+    justify-items: center;
 }
 
 #footer img{
-    max-width: 3vw;
+    max-width: 5vw;
     height: auto;
+}
+
+#agartha-logo-container{
+    margin: auto;
 }

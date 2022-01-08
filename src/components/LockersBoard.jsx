@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import CredentialsList from "./CredentialsList.jsx";
 import { v4 as uuidv4 } from "uuid";
 import { toast } from "react-toastify";
-import { faKey } from "@fortawesome/free-solid-svg-icons";
+import { faKey, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function LockersBoard() {
@@ -21,10 +21,13 @@ export default function LockersBoard() {
             if (storedCredentials) {
                 setLogged(true);
                 //storageKey is valid and values exist
+                toast.success("Welcome to your Locker")
                 setCredentialsList(storedCredentials);
             }
-        } else setLogged(false);
-        logged ? toast.success("Valid key") : toast.error("Invalid key");
+        } else {
+            setLogged(false);
+            toast.error("Wrong key");
+        }
     }
 
     //saves into local storage
@@ -42,6 +45,21 @@ export default function LockersBoard() {
         );
         console.log(credential);
         setCredentialsList(newCredentials);
+    }
+
+    const createNewLocker = () => {
+        const MIN_LENGTH = 8
+        if (storageKey.trim() == "" && storageKey.length < MIN_LENGTH) {
+            toast.error(`Your key should not be empty and has te be longer than ${MIN_LENGTH - 1} characters`);
+            return;
+        } else {
+            if (localStorage.getItem(storageKey)) {
+                toast.error("Your key is already used");
+                setStorageKey("");
+            } else {
+                setLogged(true);
+            }
+        }
     }
 
     function addNewCredential(event) {
@@ -74,25 +92,29 @@ export default function LockersBoard() {
                         credentialsList={credentialsList}
                         toggleCredential={toggleCredential}
                     />
-                    <hr></hr>
-                    <label>Service name :</label>
-                    <input ref={serviceNameRef} type="text" />
-                    <br></br>
-                    <label>Login :</label>
-                    <input ref={loginRef} type="text" />
-                    <label>Password :</label>
-                    <input ref={passwordRef} type="text" />
-                    <br></br>
-                    <button onClick={addNewCredential}>Add</button>
+                    <form>
+                        <label>Service name :</label>
+                        <input ref={serviceNameRef} type="text" />
+                        <label>Login :</label>
+                        <input ref={loginRef} type="text" />
+                        <label>Password :</label>
+                        <input ref={passwordRef} type="text" />
+                        <button onClick={addNewCredential}>Add</button>
+                    </form>
                 </div>
                 :
                 <div id="locker-login">
-                    <input
-                        value={storageKey}
-                        type="text"
-                        onChange={(event) => setStorageKey(event.target.value)}
-                    ></input>
-                    <button onClick={validateKey}><FontAwesomeIcon icon={faKey} /> Open Locker</button>
+                    <h2>Please type a key and "<strong className="strong_1">Open Locker</strong>" or "<strong className="strong_2">Create a new Locker</strong>" :</h2>
+                    <div>
+                        <input
+                            value={storageKey}
+                            type="text"
+                            placeholder="my-simple-yet-personnal-key"
+                            onChange={(event) => setStorageKey(event.target.value)}
+                        ></input>
+                        <button id="open-btn" onClick={validateKey}><FontAwesomeIcon icon={faKey} /> Open Locker</button>
+                    </div>
+                    <button id="new-locker-btn" onClick={createNewLocker}><FontAwesomeIcon icon={faPlus} />Create new Locker </button>
                 </div>
             }
 

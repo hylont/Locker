@@ -47,6 +47,7 @@
           "@electron-forge/plugin-webpack",
           {
             "mainConfig": "./webpack.main.config.js",
+            "devContentSecurityPolicy": "style-src-elem 'unsafe-inline' https://fonts.googleapis.com",
             "renderer": {
               "config": "./webpack.renderer.config.js",
               "entryPoints": [
