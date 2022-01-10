@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEyeSlash, faEye } from '@fortawesome/free-solid-svg-icons';
 import { useState, useRef } from 'react/cjs/react.development';
 
-export default function Credential({ credential, toggleCredential }) {
+export default function Credential({ credential, toggleCredential,t }) {
     const [hidden, setHidden] = useState(true);
     const pwdContainer = useRef(null);
     const idContainer = useRef(null);
@@ -36,7 +36,7 @@ export default function Credential({ credential, toggleCredential }) {
                 <div className="credential_container cc_bot_cell_1">
                     {!hidden &&
                         <div className="cc_bot_cell">
-                            <label>Login :</label>
+                            <label>{t("board.lockers.logged.credential.login_label")}</label>
                             <input type="text" className="id" value={credential.id} ref={idContainer} onChange={handleChange}></input>
                         </div>
                     }
@@ -44,7 +44,7 @@ export default function Credential({ credential, toggleCredential }) {
                 <div className="credential_container cc_bot_cell_2">
                     {!hidden &&
                         <div className="cc_bot_cell ">
-                            <label>Password :</label>
+                            <label>{t("board.lockers.logged.credential.password_label")}</label>
                             <input type="password" className="pwd" value={credential.pwd} ref={pwdContainer} onChange={handleChange} onMouseEnter={() => onPwdHover(true)} onMouseOut={() => onPwdHover(false)}></input>
                         </div>
                     }

@@ -96,10 +96,10 @@
     color: var(--palette-fontcolor);
 }
 
-#locker-login .strong_1{
+#locker-login > h2 strong:nth-child(1){
     border-bottom: var(--palette-secondary) 3px solid;
 }
-#locker-login .strong_2{
+#locker-login > h2 strong:nth-child(2){
     border-bottom: var(--palette-primary) 3px solid;
 }
 

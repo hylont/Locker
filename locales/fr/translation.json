@@ -1,0 +1,32 @@
+{
+    "nav.title.undertitle": "Se concentrer sur l'important",
+    "nav.footer.text": "Fait avec ❤ par Agartha Développement",
+    "nav.menu.home": "Accueil",
+    "nav.menu.lockers": "Casiers",
+
+    "board.home.welcomer": "Bienvenue sur Locker !",
+    "board.home.p1":"Locker est un <strong>gestionnaire de mots de passe</strong> parce que soyons honnêtes, se souvenir de <small>“~AHtX8KU@N5(yDp-5fdJpQ”</small> n’est vraiment pas de la tarte.",
+    
+    "board.home.p2":"Du coup Locker est là pour garder au chaud tes mots de passe les plus étranges de manière sécurisée que tu peux consulter juste <strong>en te souvenant de ta clé !</strong>",
+
+    "board.lockers.login.welcomer":"Merci d’insérer une clé de Casier, puis d'appuyer sur <strong>Ouvrir le Casier</strong> ou <strong>Créer un Casier</strong> :",
+    "board.lockers.login.key_placeholder":"ma-super-clé-confidentielle",
+    "board.lockers.login.button_open":"Ouvrir le Casier",
+    "board.lockers.login.button_new":"Créer un Casier",
+
+    "board.lockers.login.toasts.correct": "Casier ouvert avec succès",
+    "board.lockers.login.toasts.incorrect": "Clé invalide",
+    "board.lockers.login.toasts.invalid": "Une clé ne devrait comporter au moins {{minLength}} caractères",
+    "board.lockers.login.toasts.used":"Cette clé est déjà utilisée, cliquez sur 'Ouvrir Casier' si vous souhaitez l'ouvrir",
+    
+    "board.lockers.logged.title":"Vos identifiants :",
+    "board.lockers.logged.title.empty":"Aucun identifiant, veuillez utilisez le formulaire ci-dessous :",
+    "board.lockers.logged.form.service_label":"Nom du service :",
+    "board.lockers.logged.form.login_label":"Identifiant :",
+    "board.lockers.logged.form.password_label":"Mot de Passe :",
+    "board.lockers.logged.form.add_button":"Ajouter",
+    "board.lockers.logged.toasts.empty":"Impossible de créer : au moins un des champs est vide",
+
+    "board.lockers.logged.credential.login_label":"Identifiant :",
+    "board.lockers.logged.credential.password_label":"Mot de Passe :"
+}

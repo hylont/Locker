@@ -1,0 +1,32 @@
+{
+    "nav.title.undertitle": "Remember what's important",
+    "nav.footer.text": "Made with ❤ by Agartha Développement",
+    "nav.menu.home": "Home",
+    "nav.menu.lockers": "Lockers",
+
+    "board.home.welcomer": "Welcome to Locker !",
+    "board.home.p1":"Locker is a <strong>password manager</strong> because let's be real, remembering <small>“~AHtX8KU@N5(yDp-5fdJpQ”</small> is not easy at all.",
+    
+    "board.home.p2":"So, Locker's purpose is to keep your precious credentials, as bizarre as they can be, in a warm comfy storage (actually that's not true), so you can see them just by <strong>remembering your key !</strong>",
+
+    "board.lockers.login.welcomer":"Please type a key and <strong>Open Locker</strong> or <strong>Create a new Locker</strong> :",
+    "board.lockers.login.key_placeholder":"my-simple-yet-personnal-key",
+    "board.lockers.login.button_open":"Open Locker",
+    "board.lockers.login.button_new":"Create a Locker",
+
+    "board.lockers.login.toasts.correct": "You have successfuly entered your locker",
+    "board.lockers.login.toasts.incorrect": "Wrong key",
+    "board.lockers.login.toasts.invalid": "Your key should not be empty and has to be at least {{minLength}} characters long",
+    "board.lockers.login.toasts.used":"This key is already used, press 'Open Locker' if you wanted to open it",
+    
+    "board.lockers.logged.title":"My credentials :",
+    "board.lockers.logged.title.empty":"This Locker is empty, please use the form below :",
+    "board.lockers.logged.form.service_label":"Service name :",
+    "board.lockers.logged.form.login_label":"Login :",
+    "board.lockers.logged.form.password_label":"Password :",
+    "board.lockers.logged.form.add_button":"Add",
+    "board.lockers.logged.toasts.empty":"Cannot create a new credential : at least one of your inputs is empty",
+
+    "board.lockers.logged.credential.login_label":"Login :",
+    "board.lockers.logged.credential.password_label":"Password :"
+}

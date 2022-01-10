@@ -4,8 +4,9 @@ import { v4 as uuidv4 } from "uuid";
 import { toast } from "react-toastify";
 import { faKey, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Trans } from "react-i18next";
 
-export default function LockersBoard() {
+export default function LockersBoard({t}) {
 
     const [storageKey, setStorageKey] = useState("");
     const [credentialsList, setCredentialsList] = useState([]);
@@ -21,12 +22,12 @@ export default function LockersBoard() {
             if (storedCredentials) {
                 setLogged(true);
                 //storageKey is valid and values exist
-                toast.success("Welcome to your Locker")
+                toast.success(t("board.lockers.login.toasts.correct"));
                 setCredentialsList(storedCredentials);
             }
         } else {
             setLogged(false);
-            toast.error("Wrong key");
+            toast.error(t("board.lockers.login.toasts.incorrect"));
         }
     }
 
@@ -49,11 +50,11 @@ export default function LockersBoard() {
     const createNewLocker = () => {
         const MIN_LENGTH = 8
         if (storageKey.trim() == "" && storageKey.length < MIN_LENGTH) {
-            toast.error(`Your key should not be empty and has te be longer than ${MIN_LENGTH - 1} characters`);
+            toast.error(t("board.lockers.login.toasts.invalid",{minLength: MIN_LENGTH-1}));
             return;
         } else {
             if (localStorage.getItem(storageKey)) {
-                toast.error("Your key is already used");
+                toast.error(t("board.lockers.login.toasts.used"));
                 setStorageKey("");
             } else {
                 setLogged(true);
@@ -67,7 +68,7 @@ export default function LockersBoard() {
         const LOGIN_VALUE = loginRef.current.value;
         const PASSWORD_VALUE = passwordRef.current.value;
         if (SERVICE_VALUE.trim() === "" || LOGIN_VALUE.trim() === "" || PASSWORD_VALUE.trim() === "") {
-            toast.error("Cannot create a new credential : one of your inputs is empty");
+            toast.error(t("board.lockers.login.toasts.empty"));
         } else {
             setCredentialsList((prevCredential) => {
                 return [
@@ -90,33 +91,35 @@ export default function LockersBoard() {
         <div id="tab-lockers" >
             {logged ?
                 <div id="locker-logged">
+                    <h1>{credentialsList.length>0 ? t("board.lockers.logged.title") : t("board.lockers.logged.title.empty")}</h1>
                     <CredentialsList
                         credentialsList={credentialsList}
                         toggleCredential={toggleCredential}
+                        t={t}
                     />
                     <form>
-                        <label>Service name :</label>
+                        <label>{t("board.lockers.logged.form.service_label")}</label>
                         <input ref={serviceNameRef} type="text" />
-                        <label>Login :</label>
+                        <label>{t("board.lockers.logged.form.login_label")}</label>
                         <input ref={loginRef} type="text" />
-                        <label>Password :</label>
+                        <label>{t("board.lockers.logged.form.password_label")}</label>
                         <input ref={passwordRef} type="text" />
-                        <button onClick={addNewCredential}>Add</button>
+                        <button onClick={addNewCredential}>{t("board.lockers.logged.form.add_button")}</button>
                     </form>
                 </div>
                 :
                 <div id="locker-login">
-                    <h2>Please type a key and "<strong className="strong_1">Open Locker</strong>" or "<strong className="strong_2">Create a new Locker</strong>" :</h2>
+                    <h2><Trans>{t("board.lockers.login.welcomer")}</Trans></h2>
                     <div>
                         <input
                             value={storageKey}
                             type="text"
-                            placeholder="my-simple-yet-personnal-key"
+                            placeholder={t("board.lockers.login.key_placeholder")}
                             onChange={(event) => setStorageKey(event.target.value)}
                         ></input>
-                        <button id="open-btn" onClick={validateKey}><FontAwesomeIcon icon={faKey} /> Open Locker</button>
+                        <button id="open-btn" onClick={validateKey}><FontAwesomeIcon icon={faKey} />{t("board.lockers.login.button_open")}</button>
                     </div>
-                    <button id="new-locker-btn" onClick={createNewLocker}><FontAwesomeIcon icon={faPlus} />Create new Locker </button>
+                    <button id="new-locker-btn" onClick={createNewLocker}><FontAwesomeIcon icon={faPlus} />{t("board.lockers.login.button_new")}</button>
                 </div>
             }
 

@@ -1,21 +1,18 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import Nav from "./components/Nav.jsx";
-import { toast, ToastContainer } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import LockersBoard from "./components/LockersBoard.jsx";
 import HomeBoard from "./components/HomeBoard.jsx";
+import './i18n';
+import { useTranslation} from "react-i18next";
+
 
 const ROOT = document.querySelector("#root");
 
-async function clicked() {
-  const RES = await window.locker.doSomething("That's kinda cool");
-  console.info(RES);
-}
-
 function App() {
+  const [t, i18n] = useTranslation();
   const [selectedBoard, setSelectedBoard] = useState("Home");
-
-  //let agarthaLogo = document.querySelector('#hidden-images #agartha-logo');
 
   const selectBoard = (boardName) => {
     setSelectedBoard(boardName);
@@ -24,15 +21,15 @@ function App() {
   return (
     <>
     <ToastContainer />
-      <Nav onSelectBoard={selectBoard} />
+      <Nav onSelectBoard={selectBoard} t={t} i18n={i18n}/>
       <div id="board">
         <div id="title-container">
-          <h2 id="title">{selectedBoard}</h2>
+          <h2 id="title">{t(`nav.menu.${selectedBoard.toLowerCase()}`)}</h2>
           <hr></hr>
         </div>
         <div id="main-container">
-          {selectedBoard === "Home" && <HomeBoard />}
-          {selectedBoard === "Lockers" && <LockersBoard />}
+          {selectedBoard === "Home" && <HomeBoard t={t} />}
+          {selectedBoard === "Lockers" && <LockersBoard t={t} />}
         </div>
       </div>
     </>
