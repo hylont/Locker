@@ -38,12 +38,11 @@ export default function LockersBoard() {
     }, [credentialsList]);
 
     //overwrites a credential
-    function toggleCredential(uuid) {
-        const newCredentials = [...credentialsList]; //need to copy the array else it will overwrites the state
-        const credential = newCredentials.find(
-            (credential) => credential.uuid === uuid
-        );
-        console.log(credential);
+    function toggleCredential(uuid,id,pwd) {
+        let newCredentials = [...credentialsList]; //need to copy the array else it will overwrites the state
+        let existingCredential = newCredentials.find((credential) => credential.uuid === uuid);
+        let newCredential = {...existingCredential,id:id,pwd:pwd};
+        newCredentials = newCredentials.map(credential => credential.uuid === uuid ? newCredential : credential);
         setCredentialsList(newCredentials);
     }
 
@@ -62,28 +61,31 @@ export default function LockersBoard() {
         }
     }
 
-    function addNewCredential(event) {
+    const addNewCredential = () => {
+        //FIXME Crashes without even sleeping
         const SERVICE_VALUE = serviceNameRef.current.value;
         const LOGIN_VALUE = loginRef.current.value;
         const PASSWORD_VALUE = passwordRef.current.value;
-        if (SERVICE_VALUE === "" || LOGIN_VALUE === "" || PASSWORD_VALUE === "")
-            return; //TODO Open a specific alert dialog box
-
-        setCredentialsList((prevCredential) => {
-            return [
-                ...prevCredential,
-                {
-                    uuid: uuidv4(),
-                    service: SERVICE_VALUE,
-                    id: LOGIN_VALUE,
-                    pwd: PASSWORD_VALUE,
-                },
-            ];
-        });
-        serviceNameRef.current.value = null;
-        loginRef.current.value = null;
-        passwordRef.current.value = null;
+        if (SERVICE_VALUE.trim() === "" || LOGIN_VALUE.trim() === "" || PASSWORD_VALUE.trim() === "") {
+            toast.error("Cannot create a new credential : one of your inputs is empty");
+        } else {
+            setCredentialsList((prevCredential) => {
+                return [
+                    ...prevCredential,
+                    {
+                        uuid: uuidv4(),
+                        service: SERVICE_VALUE,
+                        id: LOGIN_VALUE,
+                        pwd: PASSWORD_VALUE,
+                    },
+                ];
+            });
+            serviceNameRef.current.value = null;
+            loginRef.current.value = null;
+            passwordRef.current.value = null;
+        }
     }
+
     return (
         <div id="tab-lockers" >
             {logged ?

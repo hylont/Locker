@@ -1,9 +1,10 @@
 /*BASIC STYLE*/
 #board {
-    padding: 2rem;
-    width: 80vw;
+    padding: 2vw;
+    width: 76vw;
     background-color: var(--background-primary);
     color: var(--board-fontcolor);
+    margin-left: 20vw;
 }
 
 #title{
@@ -106,12 +107,13 @@
 
 .credential{
     display: flex;
-    flex-direction: row nowrap;
+    flex-direction: row;
     justify-content: flex-start;
     border: 1px solid var(--locker-containersbordercolor);
     color: #000;
     width: 100%;
     height: 10%;
+    margin-bottom: 2rem;
 }
 .credential_container_top{
     font-size: var(--locker-servicesize);
@@ -148,8 +150,12 @@
     grid-template-rows: 40px;
 }
 .credential_infos *{
-    font-size: 1.3rem;
+    font-size: 1.2rem;
 }
+.credential_container_top h2{
+    font-size: 1.4rem;
+}
+
 .cc_bot_cell{
     grid-row-start: 2;
 }
@@ -172,9 +178,24 @@
     display: flex;
     flex-direction: column;
     margin: auto;
-    padding: 10%;
+    padding: 10% 25%;
 }
 
 #locker-logged form * {
-    padding: 0.8rem 0;
+    padding: 0.6rem 0;
+}
+
+#locker-logged form input{
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+}
+
+#locker-logged form button {
+    width: 6rem;
+    margin-left: auto;
+    border: 0;
+    border-radius: 10px;
+    background-color: var(--palette-primary);
+    cursor: pointer;
+    color: var(--palette-fontcolor);
 }
