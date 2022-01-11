@@ -18,6 +18,7 @@
     "board.lockers.login.toasts.incorrect": "Clé invalide",
     "board.lockers.login.toasts.invalid": "Une clé ne devrait comporter au moins {{minLength}} caractères",
     "board.lockers.login.toasts.used":"Cette clé est déjà utilisée, cliquez sur 'Ouvrir Casier' si vous souhaitez l'ouvrir",
+    "board.lockers.login.toasts.empty":"Au moins un des champs est vide",
     
     "board.lockers.logged.title":"Vos identifiants :",
     "board.lockers.logged.title.empty":"Aucun identifiant, veuillez utilisez le formulaire ci-dessous :",

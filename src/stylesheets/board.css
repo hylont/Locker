@@ -173,7 +173,7 @@
     grid-column-start: 2;
 }
 
-#locker-logged form{
+#locker-logged #form{
     border-top: 2px solid #000;
     display: flex;
     flex-direction: column;
@@ -181,16 +181,16 @@
     padding: 10% 25%;
 }
 
-#locker-logged form * {
+#locker-logged #form * {
     padding: 0.6rem 0;
 }
 
-#locker-logged form input{
+#locker-logged #form input{
     margin-bottom: 1.5rem;
     font-size: 1.2rem;
 }
 
-#locker-logged form button {
+#locker-logged #form button {
     width: 6rem;
     margin-left: auto;
     border: 0;

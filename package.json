@@ -1,20 +1,19 @@
 {
-  "name": "locker-app",
-  "productName": "locker-app",
-  "version": "1.0.0",
-  "description": "My Electron application description",
+  "name": "locker",
+  "productName": "locker",
+  "version": "1.0.1",
+  "description": "Your lightweight password manager",
   "main": ".webpack/main",
   "scripts": {
     "start": "electron-forge start",
     "package": "electron-forge package",
     "make": "electron-forge make",
-    "publish": "electron-forge publish",
     "lint": "echo \"No linting configured\""
   },
   "keywords": [],
   "author": {
-    "name": "C",
-    "email": "lohan.calot@gmail.com"
+    "name": "Agartha Développement",
+    "email": "lohan.calot@agartha-dev.com"
   },
   "license": "MIT",
   "config": {

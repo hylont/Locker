@@ -6,7 +6,7 @@ import { faKey, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Trans } from "react-i18next";
 
-export default function LockersBoard({t}) {
+export default function LockersBoard({ t }) {
 
     const [storageKey, setStorageKey] = useState("");
     const [credentialsList, setCredentialsList] = useState([]);
@@ -17,32 +17,25 @@ export default function LockersBoard({t}) {
 
     //loads from local storage
     const validateKey = () => {
-        if (storageKey) {
+        if (storageKey !== '') {
             const storedCredentials = JSON.parse(localStorage.getItem(storageKey));
             if (storedCredentials) {
                 setLogged(true);
                 //storageKey is valid and values exist
                 toast.success(t("board.lockers.login.toasts.correct"));
                 setCredentialsList(storedCredentials);
+            } else {
+                setLogged(false);
+                toast.error(t("board.lockers.login.toasts.incorrect"));
             }
-        } else {
-            setLogged(false);
-            toast.error(t("board.lockers.login.toasts.incorrect"));
         }
     }
 
-    //saves into local storage
-    useEffect(() => {
-        if (storageKey) {
-            localStorage.setItem(storageKey, JSON.stringify(credentialsList));
-        }
-    }, [credentialsList]);
-
     //overwrites a credential
-    function toggleCredential(uuid,id,pwd) {
+    function toggleCredential(uuid, id, pwd) {
         let newCredentials = [...credentialsList]; //need to copy the array else it will overwrites the state
         let existingCredential = newCredentials.find((credential) => credential.uuid === uuid);
-        let newCredential = {...existingCredential,id:id,pwd:pwd};
+        let newCredential = { ...existingCredential, id: id, pwd: pwd };
         newCredentials = newCredentials.map(credential => credential.uuid === uuid ? newCredential : credential);
         setCredentialsList(newCredentials);
     }
@@ -50,7 +43,7 @@ export default function LockersBoard({t}) {
     const createNewLocker = () => {
         const MIN_LENGTH = 8
         if (storageKey.trim() == "" && storageKey.length < MIN_LENGTH) {
-            toast.error(t("board.lockers.login.toasts.invalid",{minLength: MIN_LENGTH-1}));
+            toast.error(t("board.lockers.login.toasts.invalid", { minLength: MIN_LENGTH - 1 }));
             return;
         } else {
             if (localStorage.getItem(storageKey)) {
@@ -62,42 +55,53 @@ export default function LockersBoard({t}) {
         }
     }
 
-    const addNewCredential = () => {
-        //FIXME Crashes without even sleeping
-        const SERVICE_VALUE = serviceNameRef.current.value;
-        const LOGIN_VALUE = loginRef.current.value;
-        const PASSWORD_VALUE = passwordRef.current.value;
-        if (SERVICE_VALUE.trim() === "" || LOGIN_VALUE.trim() === "" || PASSWORD_VALUE.trim() === "") {
-            toast.error(t("board.lockers.login.toasts.empty"));
-        } else {
-            setCredentialsList((prevCredential) => {
-                return [
-                    ...prevCredential,
-                    {
-                        uuid: uuidv4(),
-                        service: SERVICE_VALUE,
-                        id: LOGIN_VALUE,
-                        pwd: PASSWORD_VALUE,
-                    },
+    function addNewCredential(event) {
+        try {
+            const SERVICE_VALUE = serviceNameRef.current.value;
+            const LOGIN_VALUE = loginRef.current.value;
+            const PASSWORD_VALUE = passwordRef.current.value;
+            if (SERVICE_VALUE.trim() === "" || LOGIN_VALUE.trim() === "" || PASSWORD_VALUE.trim() === "") {
+                toast.error(t("board.lockers.login.toasts.empty"));
+                return;
+            }
+            setCredentialsList(prevCredentials => {
+                return [...prevCredentials,
+                {
+                    uuid: uuidv4(),
+                    service: SERVICE_VALUE,
+                    id: LOGIN_VALUE,
+                    pwd: PASSWORD_VALUE
+                }
                 ];
             });
             serviceNameRef.current.value = null;
             loginRef.current.value = null;
             passwordRef.current.value = null;
-        }
+        } catch (e) { console.error(e) }
     }
+
+    //saves into local storage
+    useEffect(() => {
+        try {
+            if (storageKey !== '') {
+                toast.success("Successfuly saved your credentials");
+                localStorage.setItem(storageKey, JSON.stringify(credentialsList));
+            }
+        } catch (e) { console.error(e) }
+
+    }, [credentialsList]);
 
     return (
         <div id="tab-lockers" >
             {logged ?
                 <div id="locker-logged">
-                    <h1>{credentialsList.length>0 ? t("board.lockers.logged.title") : t("board.lockers.logged.title.empty")}</h1>
+                    <h1>{credentialsList.length > 0 ? t("board.lockers.logged.title") : t("board.lockers.logged.title.empty")}</h1>
                     <CredentialsList
                         credentialsList={credentialsList}
                         toggleCredential={toggleCredential}
                         t={t}
                     />
-                    <form>
+                    <div id="form">
                         <label>{t("board.lockers.logged.form.service_label")}</label>
                         <input ref={serviceNameRef} type="text" />
                         <label>{t("board.lockers.logged.form.login_label")}</label>
@@ -105,7 +109,7 @@ export default function LockersBoard({t}) {
                         <label>{t("board.lockers.logged.form.password_label")}</label>
                         <input ref={passwordRef} type="text" />
                         <button onClick={addNewCredential}>{t("board.lockers.logged.form.add_button")}</button>
-                    </form>
+                    </div>
                 </div>
                 :
                 <div id="locker-login">

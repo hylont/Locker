@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain } = require('electron');
+const { app, BrowserWindow, globalShortcut } = require('electron');
 const path = require('path');
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
@@ -13,7 +13,8 @@ const createWindow = () => {
     height: 800,
 
     webPreferences:{
-      preload: path.join(__dirname, "preload.js")
+      preload: path.join(__dirname, "preload.js"),
+      devTools: !app.isPackaged,
     }
   });
 
@@ -30,6 +31,16 @@ const createWindow = () => {
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.on('ready', createWindow);
+
+app.on('ready', () => {
+  // Register a shortcut listener for Ctrl + Shift + I
+  globalShortcut.register('Control+Shift+I', () => {
+      // When the user presses Ctrl + Shift + I, this function will get called
+      // You can modify this function to do other things, but if you just want
+      // to disable the shortcut, you can just return false
+      return false;
+  });
+});
 
 // Quit when all windows are closed, except on macOS. There, it's common
 // for applications and their menu bar to stay active until the user quits

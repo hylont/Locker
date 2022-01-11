@@ -18,6 +18,7 @@
     "board.lockers.login.toasts.incorrect": "Wrong key",
     "board.lockers.login.toasts.invalid": "Your key should not be empty and has to be at least {{minLength}} characters long",
     "board.lockers.login.toasts.used":"This key is already used, press 'Open Locker' if you wanted to open it",
+    "board.lockers.login.toasts.empty":"At least one of your fields is empty",
     
     "board.lockers.logged.title":"My credentials :",
     "board.lockers.logged.title.empty":"This Locker is empty, please use the form below :",

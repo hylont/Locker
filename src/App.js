@@ -5,7 +5,7 @@ import { ToastContainer } from "react-toastify";
 import LockersBoard from "./components/LockersBoard.jsx";
 import HomeBoard from "./components/HomeBoard.jsx";
 import './i18n';
-import { useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 
 const ROOT = document.querySelector("#root");

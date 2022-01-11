@@ -31,8 +31,8 @@ export default function Nav({onSelectBoard,t,i18n}) {
                 <li id="Lockers" className="nav_btn" onClick={(e) => switchTab(e)} ><FontAwesomeIcon icon={faBox}/><p>{t("nav.menu.lockers")}</p></li>
             </ul>
             <div id="languages">
-                <button id="btn-en" onClick={() => i18n.changeLanguage('en') }>English <FontAwesomeIcon icon={faStar} /></button>
-                <button id="btn-fr" onClick={() => i18n.changeLanguage('fr') }>Français <FontAwesomeIcon icon={faCheese} /></button>
+                <button id="btn-en" onClick={() => i18n.changeLanguage('en') }>En <FontAwesomeIcon icon={faStar} /></button>
+                <button id="btn-fr" onClick={() => i18n.changeLanguage('fr') }>Fr <FontAwesomeIcon icon={faCheese} /></button>
             </div>
             <div id="footer">
                 <p>{t("nav.footer.text")}</p>
