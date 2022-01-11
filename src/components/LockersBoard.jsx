@@ -56,38 +56,33 @@ export default function LockersBoard({ t }) {
     }
 
     function addNewCredential(event) {
-        try {
-            const SERVICE_VALUE = serviceNameRef.current.value;
-            const LOGIN_VALUE = loginRef.current.value;
-            const PASSWORD_VALUE = passwordRef.current.value;
-            if (SERVICE_VALUE.trim() === "" || LOGIN_VALUE.trim() === "" || PASSWORD_VALUE.trim() === "") {
-                toast.error(t("board.lockers.login.toasts.empty"));
-                return;
+        const SERVICE_VALUE = serviceNameRef.current.value;
+        const LOGIN_VALUE = loginRef.current.value;
+        const PASSWORD_VALUE = passwordRef.current.value;
+        if (SERVICE_VALUE.trim() === "" || LOGIN_VALUE.trim() === "" || PASSWORD_VALUE.trim() === "") {
+            toast.error(t("board.lockers.login.toasts.empty"));
+            return;
+        }
+        setCredentialsList(prevCredentials => {
+            return [...prevCredentials,
+            {
+                uuid: uuidv4(),
+                service: SERVICE_VALUE,
+                id: LOGIN_VALUE,
+                pwd: PASSWORD_VALUE
             }
-            setCredentialsList(prevCredentials => {
-                return [...prevCredentials,
-                {
-                    uuid: uuidv4(),
-                    service: SERVICE_VALUE,
-                    id: LOGIN_VALUE,
-                    pwd: PASSWORD_VALUE
-                }
-                ];
-            });
-            serviceNameRef.current.value = null;
-            loginRef.current.value = null;
-            passwordRef.current.value = null;
-        } catch (e) { console.error(e) }
+            ];
+        });
+        serviceNameRef.current.value = null;
+        loginRef.current.value = null;
+        passwordRef.current.value = null;
     }
 
     //saves into local storage
     useEffect(() => {
-        try {
-            if (storageKey !== '') {
-                toast.success("Successfuly saved your credentials");
-                localStorage.setItem(storageKey, JSON.stringify(credentialsList));
-            }
-        } catch (e) { console.error(e) }
+        if (storageKey !== '') {
+            localStorage.setItem(storageKey, JSON.stringify(credentialsList));
+        }
 
     }, [credentialsList]);
 
